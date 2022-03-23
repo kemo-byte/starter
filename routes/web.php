@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/welcome/{id?}', function () {
     return 'welcome';
 });
+
+Route::get('/landing', 'LandingController@index');
