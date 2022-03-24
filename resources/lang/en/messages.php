@@ -4,6 +4,7 @@ return [
 
   
     'welcome' => 'welcome',
-    'hello' => 'hello'
+    'hello' => 'hello',
+    'phone' => 'phone'
 
 ];
