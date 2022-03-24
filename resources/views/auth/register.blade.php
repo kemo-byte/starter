@@ -82,6 +82,7 @@
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            <a class="btn btn-primary" href="{{url('redirect/facebook')}}">Login with Facebook</a>
                         </div>
                     </form>
                 </div>
