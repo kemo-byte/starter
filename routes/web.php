@@ -14,7 +14,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $data = 'kemobyte';
+    return view('welcome',compact('data'));
 });
 
 Route::get('/welcome/{id?}', function () {

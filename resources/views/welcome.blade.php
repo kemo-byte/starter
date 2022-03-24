@@ -86,6 +86,7 @@
 
                 <div class="links">
                     <h1>{{__('messages.welcome') }}</h1>
+                    <p>{{ $data }}</p>
                 </div>
             </div>
         </div>
