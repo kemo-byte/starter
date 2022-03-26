@@ -37,4 +37,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // Add to Authentication trait username function
+
+    // $login = request() -> input('identify'); // email or phone
+
+    // $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+
+    // request()->merge([$field => $login]);
+
+    // return $field;
 }
