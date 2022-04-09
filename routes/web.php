@@ -36,3 +36,10 @@ Auth::routes(['verify'=> true]);
 Route::get('/redirect/{service}', 'SocialController@redirect');
 
 Route::get('/callback/{service}', 'SocialController@callback');
+
+Route::group(['prefix' => 'offers'] , function () {
+
+    Route::get('/create','CloudController@create');
+    Route::post('/create','CloudController@store');
+
+});
