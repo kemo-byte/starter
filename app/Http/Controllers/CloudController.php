@@ -23,17 +23,20 @@ class CloudController extends Controller
         $messages = $this->getMessages();
 
         $rules = $this->getRules();
-        
+
         $validator = Validator::make($request->all(),$messages,$rules);
         
         if($validator->fails()) {
-            return $validator->errors();
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
         Offer::create([
             'name' => $request->name,
             'price' => $request->price,
             'details' => $request->details
         ]);
+
+        return redirect()->back()->with(['success'=>'تم الإدخال بنجاح']);
+
     }
 
     public function create()
