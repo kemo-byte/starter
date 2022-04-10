@@ -8,11 +8,12 @@
   @endif
 
   <div class="container text-right" dir="rtl">
+    <h1>{{ __('messages.Add New Offer')}}</h1>
     <div class="row">
 <form action="create" method="post">
     @csrf
     <div class="mb-3">
-      <label for="" class="form-label">name</label>
+      <label for="" class="form-label">{{__('messages.name')}}</label>
       <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="name">
       <small id="helpId" class="form-text text-muted">Help text</small>
       @error('name')
