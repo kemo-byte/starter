@@ -54,8 +54,8 @@ class CloudController extends Controller
 
     protected function getRules() {
         return  [
-            'name.required' => 'الإسم مطلوب',
-            'price.numeric' => 'السعر يجب ان يكون ارقام',
+            'name.required' => __('messages.name is required'),
+            'price.numeric' => trans('messages.price must be numeric'),
             'details.required' =>'التفاصيل مطلوبة',
         ];
     }
