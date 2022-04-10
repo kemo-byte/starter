@@ -36,10 +36,15 @@ Auth::routes(['verify'=> true]);
 Route::get('/redirect/{service}', 'SocialController@redirect');
 
 Route::get('/callback/{service}', 'SocialController@callback');
-
+Route::group(['prefix'=> LaravelLocalization::setLocale()],function() {
 Route::group(['prefix' => 'offers'] , function () {
 
-    Route::get('/create','CloudController@create');
+   
+
+        Route::get('/create','CloudController@create');
+
+    
     Route::post('/create','CloudController@store');
 
+});
 });
