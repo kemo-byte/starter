@@ -13,10 +13,19 @@
 <form action="create" method="post">
     @csrf
     <div class="mb-3">
-      <label for="" class="form-label">{{__('messages.name')}}</label>
-      <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="name">
+      <label for="" class="form-label">{{__('messages.name_en')}}</label>
+      <input type="text" class="form-control" name="name_en" id="name_en" aria-describedby="helpId" placeholder="{{__('messages.name_en')}}">
       <small id="helpId" class="form-text text-muted">Help text</small>
-      @error('name')
+      @error('name_en')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
+      <label for="" class="form-label">{{__('messages.name_ar')}}</label>
+      <input type="text" class="form-control" name="name_ar" id="name_ar" aria-describedby="helpId" placeholder="{{__('messages.name_en')}}">
+      <small id="helpId" class="form-text text-muted">Help text</small>
+      @error('name_ar')
         <div class="alert alert-danger">{{ $message }}</div>
       @enderror
     </div>
@@ -31,10 +40,19 @@
       </div>
 
       <div class="mb-3">
-        <label for="" class="form-label">details</label>
-        <input type="text" class="form-control" name="details" id="details" aria-describedby="helpId" placeholder="details">
+        <label for="" class="form-label">english details</label>
+        <input type="text" class="form-control" name="details_en" id="details_en" aria-describedby="helpId" placeholder="details">
         <small id="helpId" class="form-text text-muted">Help text</small>
-        @error('details')
+        @error('details_en')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      </div>
+
+      <div class="mb-3">
+        <label for="" class="form-label">arabic details</label>
+        <input type="text" class="form-control" name="details_ar" id="details_ar" aria-describedby="helpId" placeholder="details">
+        <small id="helpId" class="form-text text-muted">Help text</small>
+        @error('details_ar')
         <div class="alert alert-danger">{{ $message }}</div>
       @enderror
       </div>

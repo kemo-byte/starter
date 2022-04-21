@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class CloudController extends Controller
 {
@@ -12,13 +14,20 @@ class CloudController extends Controller
     {
         
     }
-
+    public function index()
+    {
+        $offer = Offer::select('id',
+        'name_'.LaravelLocalization::getCurrentLocale(). ' as name',
+        'price',
+        'details_'.LaravelLocalization::getCurrentLocale() .' as details')->get();
+        return view('offers.index',compact('offer','offer'));
+    }
     public function getOffer()
     {
         return Offer::select('id','name')->get();
     }
 
-    public function store( Request $request)
+    public function store( Request   $request)
     {
         $messages = $this->getMessages();
 
@@ -30,9 +39,11 @@ class CloudController extends Controller
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
         Offer::create([
-            'name' => $request->name,
+            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
             'price' => $request->price,
-            'details' => $request->details
+            'details_en' => $request->details_en,
+            'details_ar' => $request->details_ar
         ]);
 
         return redirect()->back()->with(['success'=>'تم الإدخال بنجاح']);
@@ -44,19 +55,26 @@ class CloudController extends Controller
         return view('offers.create');
     }
 
-    protected function getMessages() {
+    protected function getRules()
+    {
         return  [
-            'name' => 'required|max:100|unique:offers,name',
-            'price' => 'required|numeric',
-            'details' =>'required',
+            'name_en.required' => __('messages.name_en is required'),
+            'name_ar.required' => __('messages.name_ar is required'),
+            'price.numeric' => trans('messages.price must be numeric'),
+            'details_en.required' =>'english details is requiered',
+            'details_ar.required' =>'arabic details is requiered',
         ];
     }
 
-    protected function getRules() {
+    protected function getMessages() {
         return  [
-            'name.required' => __('messages.name is required'),
-            'price.numeric' => trans('messages.price must be numeric'),
-            'details.required' =>'التفاصيل مطلوبة',
+            'name_en' => 'required|max:100|unique:offers,name_en',
+            'name_ar' => 'required|max:100|unique:offers,name_ar',
+            'price' => 'required|numeric',
+            'details_en' =>'required',
+            'details_ar' =>'required',
         ];
     }
+
+
 }

@@ -41,6 +41,7 @@ Route::group(['prefix' => 'offers'] , function () {
 
    
 
+    Route::get('/','CloudController@index');
         Route::get('/create','CloudController@create');
 
     
