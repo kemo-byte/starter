@@ -5,6 +5,16 @@
 
 
 <div class="container">
+  @if(Session::has('errors')) 
+  <div class="alert alert-danger">
+    {{Session::get('errors')}}
+  </div>
+@endif
+  @if(Session::has('success')) 
+    <div class="alert alert-success">
+      {{Session::get('success')}}
+    </div>
+  @endif
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
@@ -23,6 +33,8 @@
               <td>{{ $offer->name }}</td>
               <td>{{ $offer->price }}</td>
               <td>{{ $offer->details }}</td>
+              <td><a class="btn btn-info" style="color:white" href="/offers/edit/{{$offer->id}}">Edit</a></td>
+
             </tr>
           @endforeach  
         </tbody>

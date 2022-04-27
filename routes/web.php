@@ -45,7 +45,9 @@ Route::group(['prefix' => 'offers'] , function () {
         Route::get('/create','CloudController@create');
 
     
-    Route::post('/create','CloudController@store');
+        Route::post('/create','CloudController@store');
+        Route::get('/edit/{offer_id}','CloudController@edit');
+        Route::post('/update','CloudController@update');
 
 });
 });

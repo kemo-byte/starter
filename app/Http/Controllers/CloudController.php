@@ -38,6 +38,13 @@ class CloudController extends Controller
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
+
+        $file_extension = $request->photo->getClientOriginalExtension();
+        $file_name = time() . '.' . $file_extension;
+        $path = 'images/offers';
+
+        $request->photo ->move($path,$file_name);
+        
         Offer::create([
             'name_en' => $request->name_en,
             'name_ar' => $request->name_ar,
@@ -55,6 +62,13 @@ class CloudController extends Controller
         return view('offers.create');
     }
 
+    public function edit($offer_id)
+    {
+        $data = Offer::find($offer_id);
+        if(!$data)
+            return redirect()->back()->withErrors(['error'=>'this id is not found']);
+        return view('offers.edit',['offer'=>$data]);;
+    }
     protected function getRules()
     {
         return  [

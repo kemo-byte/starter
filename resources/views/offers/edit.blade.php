@@ -10,20 +10,11 @@
   <div class="container text-right" dir="rtl">
     <h1>{{ __('messages.Add New Offer')}}</h1>
     <div class="row">
-<form action="create" method="post" enctype="multipart/form-data" >
+<form action="update" method="post">
     @csrf
-
-    <div class="mb-3">
-      <label for="" class="form-label">photo</label>
-      <input type="file" class="form-control" name="photo" id="photo" aria-describedby="helpId" placeholder="{{__('messages.name_en')}}">
-      <small id="helpId" class="form-text text-muted">Help text</small>
-      @error('photo')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-    </div>
     <div class="mb-3">
       <label for="" class="form-label">{{__('messages.name_en')}}</label>
-      <input type="text" class="form-control" name="name_en" id="name_en" aria-describedby="helpId" placeholder="{{__('messages.name_en')}}">
+      <input type="text" class="form-control" name="name_en" value="{{$offer->name_en}}" id="name_en" aria-describedby="helpId" placeholder="{{__('messages.name_en')}}">
       <small id="helpId" class="form-text text-muted">Help text</small>
       @error('name_en')
         <div class="alert alert-danger">{{ $message }}</div>
