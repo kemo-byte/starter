@@ -39,12 +39,8 @@ class CloudController extends Controller
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
 
-        $file_extension = $request->photo->getClientOriginalExtension();
-        $file_name = time() . '.' . $file_extension;
-        $path = 'images/offers';
+        $this->saveImage($request->photo,'images/offers');
 
-        $request->photo ->move($path,$file_name);
-        
         Offer::create([
             'name_en' => $request->name_en,
             'name_ar' => $request->name_ar,
@@ -57,6 +53,13 @@ class CloudController extends Controller
 
     }
 
+    protected function saveImage($fileName,$path) {
+
+        $file_extension = $fileName->getClientOriginalExtension();
+        $file_name = time() . '.' . $file_extension;
+        $fileName ->move($path,$file_name);
+        return $file_name;
+    }
     public function create()
     {
         return view('offers.create');
