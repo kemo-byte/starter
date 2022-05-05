@@ -39,7 +39,6 @@ Route::get('/callback/{service}', 'SocialController@callback');
 Route::group(['prefix'=> LaravelLocalization::setLocale()],function() {
 Route::group(['prefix' => 'offers'] , function () {
 
-   
 
     Route::get('/','CloudController@index');
         Route::get('/create','CloudController@create');
@@ -48,6 +47,8 @@ Route::group(['prefix' => 'offers'] , function () {
         Route::post('/create','CloudController@store');
         Route::get('/edit/{offer_id}','CloudController@edit');
         Route::post('/update','CloudController@update');
+        
+        Route::get('/youtube', 'CloudController@getVideo');
 
 });
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -91,6 +92,13 @@ class CloudController extends Controller
             'details_en' =>'required',
             'details_ar' =>'required',
         ];
+    }
+
+    public function getVideo()
+    {
+        $video = Video::first();
+
+        return view('video',compact('video','video'));
     }
 
 
