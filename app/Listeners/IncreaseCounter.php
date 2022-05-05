@@ -24,8 +24,13 @@ class IncreaseCounter
      * @param  object  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(video $event)
     {
-        //
+        $this->updateViews($event -> video);
+    }
+
+    public function updateViews($video) {
+        $video -> views += 1;
+        $video -> save();
     }
 }

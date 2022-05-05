@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\video as EventsVideo;
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use App\Models\Video;
@@ -98,6 +99,8 @@ class CloudController extends Controller
     {
         $video = Video::first();
 
+        event(new EventsVideo($video));
+        
         return view('video',compact('video','video'));
     }
 
